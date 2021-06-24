@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.dao.IGradeTableDao">
+
+    <resultMap id="GradeTableMap" type="test.vo.GradeTable">
+        <id property="name" column="name" ></id>
+        <result property="grade" column="grade"></result>
+    </resultMap>
+
+    <select id="findAllGradeTable" resultMap="GradeTableMap">
+        select * from gradetable;
+    </select>
+
+    <select id="findGradeTableByName" resultMap="GradeTableMap">
+        select * from gradetable where name = #{name};
+    </select>
+
+    <insert id="insertGrade" parameterType="test.vo.GradeTable">
+        insert into gradetable (name,grade) values (#{name},#{grade});
+    </insert>
+
+    <update id="updateGrade" parameterType="test.vo.GradeTable">
+        update gradetable set grade = #{grade} where name = #{name};
+    </update>
+
+    <delete id="deleteGradeByName">
+        delete from gradetable where name = #{name};
+    </delete>
+</mapper>

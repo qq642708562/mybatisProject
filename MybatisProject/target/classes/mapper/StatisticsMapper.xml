@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.dao.IStatisticsDao">
+
+    <resultMap id="StatisticsMap" type="test.vo.Statistics">
+        <id property="max" column="max" ></id>
+        <result property="min" column="min"></result>
+        <result property="average" column="average"></result>
+        <result property="bad" column="bad"></result>
+        <result property="good" column="good"></result>
+        <result property="excellent" column="excellent"></result>
+    </resultMap>
+
+    <select id="getStatistics" resultMap="StatisticsMap">
+        select * from statistics;
+    </select>
+
+    <update id="updateStatistics" parameterType="test.vo.Statistics">
+        update statistics set max = #{max},min = #{min},average = #{average},bad = #{bad},good = #{good},excellent = #{excellent};
+    </update>
+
+</mapper>

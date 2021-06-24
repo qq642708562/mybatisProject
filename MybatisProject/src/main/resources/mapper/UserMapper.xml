@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.dao.IUserDao">
+
+    <resultMap id="UserMap" type="test.vo.User">
+        <id property="name" column="name" ></id>
+        <result property="password" column="password"></result>
+        <result property="role" column="role"></result>
+        <result property="lastName" column="lastName"></result>
+    </resultMap>
+
+    <select id="findAllUsers" resultMap="UserMap">
+        select * from user;
+    </select>
+
+    <select id="findUserByName" resultMap="UserMap">
+        select * from user where name = #{name};
+    </select>
+
+    <insert id="insertUser" parameterType="test.vo.User">
+        insert into user (name,password,role,lastName) values (#{name},#{password},#{role},#{lastName});
+    </insert>
+
+    <update id="updateUser" parameterType="test.vo.User">
+        update user set name = #{name},password = #{password},role = #{role},lastName = #{lastName};
+    </update>
+
+    <delete id="deleteUserByName">
+        delete from user where name = #{name};
+    </delete>
+</mapper>
